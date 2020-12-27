@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Navbar, Nav, NavItem, NavLink, Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption} from 'reactstrap'; 
 import Website_banner from './Website_banner.jpg'; 
 import BID from './BID.jpg'; 
 import WHscreen from './WHscreen.jpg'; 
 
-
-class Home extends React.Component {
-    
-
-
-
-    
-    items = [  
+    const items = [  
         { 
             src: Website_banner,
             altText: 'slide1',
@@ -29,48 +22,61 @@ class Home extends React.Component {
         }
     ]; 
 
-    Activity = (props) =>  {
-        const [activeIndex, setActiveIndex] = useState(0); 
-        const [animating, setAnimating] = useState(false); 
-    
+class Home extends React.Component {
+    constructor(props) {
+		super(props);
+		this.state = { activeIndex: 0 };
+		this.next = this.next.bind(this);
+		this.previous = this.previous.bind(this);
+		this.goToIndex = this.goToIndex.bind(this);
+		this.onExiting = this.onExiting.bind(this);
+		this.onExited = this.onExited.bind(this);
+	}
 
-        const next = () => {
-            if (animating) return; 
-            const nextIndex = activeIndex === items.length -1 ? 0 : activeIndex + 1; 
-            setActiveIndex(nextIndex); 
-        }
-    }
+	onExiting() {
+		this.animating = true;
+	}
 
-    previous = () => { 
-        if (animating) return; 
-        setActiveIndex(newIndex); 
-    }
+	onExited() {
+		this.animating = false;
+	}
 
-    goToIndex = (newIndex) => {
-        if (animating) return;
-        setActiveIndex(newIndex);
-    }
+	next() {
+		if (this.animating) return;
+		const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
+		this.setState({ activeIndex: nextIndex });
+	}
 
-    slides = items.map((item) => {
-        return (
-            <CarouselItem
-                onExiting={() => setAnimating(true)}
-                onExited={() => setAnimating(false)}
-                key={item.src}
-            >
-                <img src={items.src} alt={items.altText} />
-                <CarouselCaption captionText={items.captionText} captionHeader={items.caption} />
-            </CarouselItem>
-        );
-    }); 
-     
+	previous() {
+		if (this.animating) return;
+		const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
+		this.setState({ activeIndex: nextIndex });
+	}
 
+	goToIndex(newIndex) {
+		if (this.animating) return;
+		this.setState({ activeIndex: newIndex });
+	}
 
 
     render() {
+        const { activeIndex } = this.state;
+
+		const slides = items.map((item) => {
+			return (
+				<CarouselItem
+					onExiting={this.onExiting}
+					onExited={this.onExited}
+					key={item.src}
+				>
+					<img src={item.src} alt={item.altText} />
+					<CarouselCaption captionHeader={item.caption} />
+				</CarouselItem>
+			);
+		});
         return (
             <div>
-                <Navbar color= "dark"> 
+                <Navbar color= "dark" fixed="top"> 
                     <Nav className = "nav-bar">
                         <NavItem>
                             <NavLink href= "/src/Home.js">Home</NavLink>
@@ -82,7 +88,7 @@ class Home extends React.Component {
                             <NavLink href= "/src/About.js">About</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href= "/src/ContactUs.js">ContactUs</NavLink>
+                            <NavLink href= "/src/ContactUs.js">Contact Us</NavLink>
                         </NavItem>
                     </Nav>
                         <NavItem>
@@ -98,17 +104,16 @@ class Home extends React.Component {
                             <NavLink href= "https://www.instagram.com/theweeklyhuddle/">Instagram</NavLink>                       
                         </NavItem>
                 </Navbar>
-             
                 <Carousel
-                    activeIndex={activeIndex}
-                    next={next}
-                    previous={previous}
-                >
-                    <CarouselIndicators items={items} activeIndex={activeIndex} onClickHnadler={goToIndex} />
-                    {slides}
-                    <CarouselControl direction="prev"  directionText="Previous" onClickHnadler={previous} />
-                    <CarouselControl direction="next"  directionText="Next" onClickHnadler={next} />
-                </Carousel>
+					activeIndex={activeIndex}
+					next={this.next}
+					previous={this.previous}
+				>
+					<CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
+					{slides}
+					<CarouselControl direction='prev' directionText='Previous' onClickHandler={this.previous} />
+					<CarouselControl direction='next' directionText='Next' onClickHandler={this.next} />
+				</Carousel>
             </div>
                     
        );
