@@ -1,0 +1,35 @@
+.main-nav-bar {
+    background-color: black; 
+}
+
+.footer {
+    background-color:black;
+    
+}
+
+h6{
+    color: white; 
+    font-family: Verdana;
+    padding-left: 900px;
+}   
+
+.inactive  {
+    color: white; 
+    font-family:  Verdana;
+    padding: 30px;
+    font-size: 20px;
+} 
+
+.inactive:hover{
+    color: green; 
+    text-decoration: none;
+}
+
+img {
+    display: inline; 
+    padding-right: 25px; 
+}
+
+
+
+

@@ -3,7 +3,7 @@ import {Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCap
 import Website_banner from './Website_banner.jpg'; 
 import BID from './BID.jpg'; 
 import WHscreen from './WHscreen.jpg'; 
- 
+import './Home.css'; 
 
     const items = [  
         { 

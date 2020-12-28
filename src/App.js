@@ -1,8 +1,10 @@
-import './App.css';
+import './Nav.css';
 import {Route, BrowserRouter as Router, Switch, Link} from 'react-router-dom'; 
 import Home from "./Home"; 
-import Episodes from "./Epsiodes";   
-import {Navbar, Nav, NavItem, NavLink}  from 'reactstrap'; 
+import Episodes from "./Epsiodes"; 
+import About from './About'; 
+import ContactUs from './ContactUs';   
+import {Navbar, Nav, NavItem}  from 'reactstrap'; 
 import insta from './insta.png'; 
 import facebook from './facebook.png'; 
 import twitter from './twitter.png'; 
@@ -13,21 +15,22 @@ function App() {
   return (
       <Router>
           <div>
-                <Navbar color= "dark" fixed="top"> 
+                <Navbar className="main-nav-bar" fixed="top" > 
                     <Nav className = "nav-bar">
                         <NavItem>
-                            <Link to= "/">Home</Link>
+                            <Link to= "/" className="inactive">Home</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to= "/episodes">Epsiodes</Link>
+                            <Link to= "/episodes" className="inactive">Epsiodes</Link>
                         </NavItem>
                         <NavItem>
-                            <NavLink href= "/src/About.js">About</NavLink>
+                            <Link to= "/about" className="inactive">About</Link>
                         </NavItem>
                         <NavItem>
-                            <NavLink href= "/src/ContactUs.js">Contact Us</NavLink>
+                            <Link to= "/contactus" className="inactive">Contact Us</Link>
                         </NavItem>
                     </Nav>
+                        <Nav className="social">
                         <NavItem>
                             <a href= "https://www.instagram.com/theweeklyhuddle/"><img src={insta} alt="insta" onClick="https://www.instagram.com/theweeklyhuddle/"/></a>         
                         </NavItem>
@@ -40,17 +43,19 @@ function App() {
                         <NavItem>
                             <a href= "https://twitter.com/WeeklyHuddle"><img src={twitter} alt="twitter" onClick="https://twitter.com/WeeklyHuddle"/></a>                         
                         </NavItem>
+                        </Nav>
                 </Navbar>
-                <Navbar color="dark" fixed="bottom">
-                    <Nav className="footer">
-                        <h6>The Weekly Huddle Podcast</h6>
-                        <h6>Quincy Myles Jr.</h6>
+                <Navbar className="footer" fixed="bottom">
+                    <Nav>
+                        
                     </Nav>
                 </Navbar>
           </div>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/episodes" component={Episodes} />
+            <Route path="/about" component={About} />
+            <Route path="/contactus" component={ContactUs} />
           </Switch>
       </Router>
     
