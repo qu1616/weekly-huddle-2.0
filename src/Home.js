@@ -1,8 +1,9 @@
 import React from 'react';
-import {Navbar, Nav, NavItem, NavLink, Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption} from 'reactstrap'; 
+import {Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption} from 'reactstrap'; 
 import Website_banner from './Website_banner.jpg'; 
 import BID from './BID.jpg'; 
 import WHscreen from './WHscreen.jpg'; 
+ 
 
     const items = [  
         { 
@@ -76,34 +77,6 @@ class Home extends React.Component {
 		});
         return (
             <div>
-                <Navbar color= "dark" fixed="top"> 
-                    <Nav className = "nav-bar">
-                        <NavItem>
-                            <NavLink href= "/src/Home.js">Home</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href= "/src/Epsiodes.js">Epsiodes</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href= "/src/About.js">About</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href= "/src/ContactUs.js">Contact Us</NavLink>
-                        </NavItem>
-                    </Nav>
-                        <NavItem>
-                            <NavLink href= "https://twitter.com/WeeklyHuddle">Twitter</NavLink>                       
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href= "https://www.facebook.com/weeklyhuddle/">FaceBook</NavLink>                       
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href= "https://www.youtube.com/channel/UCG3-fEOhpWaXa9AZJnATcsg">YouTube</NavLink>                       
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href= "https://www.instagram.com/theweeklyhuddle/">Instagram</NavLink>                       
-                        </NavItem>
-                </Navbar>
                 <Carousel
 					activeIndex={activeIndex}
 					next={this.next}
@@ -114,8 +87,7 @@ class Home extends React.Component {
 					<CarouselControl direction='prev' directionText='Previous' onClickHandler={this.previous} />
 					<CarouselControl direction='next' directionText='Next' onClickHandler={this.next} />
 				</Carousel>
-            </div>
-                    
+            </div>    
        );
     }
 }
