@@ -15,7 +15,7 @@ function App() {
   return (
       <Router>
           <div>
-                <Navbar className="main-nav-bar" fixed="top" > 
+                <Navbar className="main-nav-bar" sticky="top" > 
                     <Nav className = "nav-bar">
                         <NavItem>
                             <Link to= "/" className="inactive">Home</Link>

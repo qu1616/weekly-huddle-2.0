@@ -73,6 +73,7 @@ class Home extends React.Component {
 					<img src={item.src} alt={item.altText} />
 					<CarouselCaption captionHeader={item.caption} />
 				</CarouselItem>
+
 			);
 		});
         return (
